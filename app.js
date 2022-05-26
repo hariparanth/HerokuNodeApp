@@ -7,7 +7,7 @@ const dbURI = 'mongodb+srv://HariParanth:veradis123@nodetuts.bwv1y.mongodb.net/N
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => console.log("Connected to db"))
-    .catch((err) => console.log("some error occured"));
+    .catch((err) => console.log("some error occured" + err));
 
 var personSchema = mongoose.Schema({
     email: {
