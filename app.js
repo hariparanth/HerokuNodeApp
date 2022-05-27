@@ -1,8 +1,9 @@
 var express = require('express');
+const favicon = require('serve-favicon')
 const mongoose = require('mongoose')
 const bodyparser = require('body-parser')
 var app = express();
-
+app.use(favicon(__dirname + '/favicon.ico'))
 const dbURI = 'mongodb+srv://HariParanth:veradis123@nodetuts.bwv1y.mongodb.net/NodeEx?retryWrites=true&w=majority';
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -35,7 +36,12 @@ app.use(bodyparser.urlencoded({
 }));
 
 const port = process.env.PORT || 3000
-app.get('/', function (req, res) {
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + '/index.html')
+})
+
+app.get('/dummy', function (req, res) {
     Login.find((err, docs) => {
         if (!err) {
             res.json(docs);
